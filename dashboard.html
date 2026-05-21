@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Registration – AI Tech Product Camp</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <a href="#main-content" class="skip-link">Skip to content</a>
+
+  <header>
+    <div class="container">
+      <span class="logo">AI Tech Product Camp</span>
+      <nav aria-label="Dashboard navigation">
+        <a href="dashboard.html" class="nav-link active">My Dashboard</a>
+        <a href="index.html" class="nav-link">Main Site</a>
+      </nav>
+      <div class="header-actions">
+        <div class="auth-controls" id="auth-controls"></div>
+        <button class="theme-toggle" id="theme-toggle" aria-label="Toggle light/dark theme" title="Toggle theme">
+          <span class="theme-toggle-icon" aria-hidden="true"></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main id="main-content">
+    <section class="container" style="padding-block: var(--space-2xl) var(--space-section);">
+      <div class="dashboard-header">
+        <h1>My Registration</h1>
+        <a href="index.html" class="dashboard-back-link" aria-label="Back to Main Site">Back to Main Site</a>
+      </div>
+
+      <!-- Loading indicator for auth verification state -->
+      <div id="dashboard-loading" class="dashboard-loading" aria-live="polite">
+        <p class="widget-loading">Verifying your session...</p>
+      </div>
+
+      <div class="dashboard-widgets" id="dashboard-widgets" style="display: none;">
+        <section id="registration-widget" class="dashboard-widget" role="region" aria-labelledby="registration-heading">
+          <h2 id="registration-heading">Registration Status</h2>
+          <div class="widget-content">
+            <p class="widget-loading">Loading...</p>
+          </div>
+        </section>
+
+        <section id="payment-widget" class="dashboard-widget" role="region" aria-labelledby="payment-heading">
+          <h2 id="payment-heading">Payment Status</h2>
+          <div class="widget-content">
+            <p class="widget-loading">Loading...</p>
+          </div>
+        </section>
+
+        <section id="materials-widget" class="dashboard-widget" role="region" aria-labelledby="materials-heading">
+          <h2 id="materials-heading">Camp Materials</h2>
+          <div class="widget-content">
+            <p class="widget-loading">Loading...</p>
+          </div>
+        </section>
+
+        <section id="profile-widget" class="dashboard-widget" role="region" aria-labelledby="profile-heading">
+          <h2 id="profile-heading">Profile Information</h2>
+          <div class="widget-content">
+            <p class="widget-loading">Loading...</p>
+          </div>
+        </section>
+
+        <section id="schedule-widget" class="dashboard-widget" role="region" aria-labelledby="schedule-heading">
+          <h2 id="schedule-heading">Camp Schedule</h2>
+          <div class="widget-content">
+            <p class="widget-loading">Loading...</p>
+          </div>
+        </section>
+
+        <section id="announcements-widget" class="dashboard-widget" role="region" aria-labelledby="announcements-heading">
+          <h2 id="announcements-heading">Announcements</h2>
+          <div class="widget-content">
+            <p class="widget-loading">Loading...</p>
+          </div>
+        </section>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <p>&copy; 2025 [Organization Name]</p>
+      <p>Contact: <a href="mailto:[email]">[email]</a></p>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/amazon-cognito-identity-js/dist/amazon-cognito-identity.min.js"></script>
+  <script src="https://sdk.amazonaws.com/js/aws-sdk-2.1472.0.min.js"></script>
+  <script src="auth.js"></script>
+  <script src="role-manager.js"></script>
+  <script src="dashboard.js"></script>
+  <script>
+    // Theme Toggle Logic (shared with main site)
+    (function () {
+      var toggle = document.getElementById('theme-toggle');
+      var STORAGE_KEY = 'theme-preference';
+
+      function getPreference() {
+        var stored = localStorage.getItem(STORAGE_KEY);
+        if (stored) return stored;
+        return window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+      }
+
+      function applyTheme(theme) {
+        if (theme === 'light') {
+          document.body.classList.add('light-theme');
+        } else {
+          document.body.classList.remove('light-theme');
+        }
+      }
+
+      var currentTheme = getPreference();
+      applyTheme(currentTheme);
+
+      if (toggle) {
+        toggle.addEventListener('click', function () {
+          currentTheme = currentTheme === 'dark' ? 'light' : 'dark';
+          applyTheme(currentTheme);
+          localStorage.setItem(STORAGE_KEY, currentTheme);
+        });
+      }
+    })();
+
+    // Dashboard Initialization
+    document.addEventListener('DOMContentLoaded', function () {
+      if (typeof Dashboard !== 'undefined') {
+        Dashboard.init();
+      }
+    });
+  </script>
+</body>
+</html>

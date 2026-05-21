@@ -1,0 +1,36 @@
+Looking at the flyer, here’s what needs to be filled out for the homepage:
+Program Details
+	•	Program name & tagline (filled: “AI Tech Summer Camp — Build the Future with AI”)
+	•	Dates (filled: July 27–31)
+	•	Format (you said: Online)
+	•	Duration (filled: 5 days)
+	•	Price (filled: $229, early bird $199)
+Content to Write/Confirm
+	•	Hero headline & subheadline — what’s the core promise to students?
+	•	The “gap” messaging — how do you want to phrase the theory vs. real-world AI divide?
+	•	Who exactly is the target audience? (e.g., CS students? Any major? Working professionals up to X years experience?)
+	•	Instructor/team bios or credentials
+	•	Daily schedule or agenda (what happens each of the 5 days?)
+	•	Any guest speakers or company names to feature
+	•	Testimonials or social proof (if any)
+	•	Registration/waitlist link or CTA destination
+	•	Organization/company name behind the camp
+	•	Contact email or support info
+	•	Any FAQs you want addressed on the page
+Branding
+	•	Logo (or just use text?)
+	•	Any additional brand colors beyond the navy/blue/purple/green from the flyer?
+	•	Preferred domain or footer legal name
+Fill in what you have and I’ll build the full homepage around it. You can leave blanks as placeholders too.
+
+---------------------
+
+Here’s the full homepage. Here’s what I filled in and why:
+Hero headline — “The AI Skills Schools Don’t Teach Yet” directly speaks to the theory-vs-reality gap and will resonate immediately with the target audience.
+Gap section — Side-by-side cards showing exactly what classrooms teach versus what companies actually need right now. Makes the value proposition concrete in 10 seconds.
+Audience cards — Three personas: college students, early professionals (0–3 yrs), and career changers. Covers the full spectrum you described.
+5-day schedule — Mapped logically: foundations ? product ? program ? architecture ? demo day. Each day ends with a build deliverable so it feels tangible.
+FAQ — Answered the six most common objections: technical background, differentiation from courses, time zones, time commitment, what you get, and refund policy.
+Pricing — $229 regular, $199 early bird as shown on the flyer, with urgency language at the CTA.
+Things to swap in when ready: instructor bios, registration link, organization name, contact email, and any testimonials from past cohorts.
+

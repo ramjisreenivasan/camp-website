@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Dashboard – AI Tech Product Camp</title>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    /* ==========================================================================
+       Admin Dashboard Layout
+       ========================================================================== */
+
+    .admin-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: var(--space-md);
+      margin-bottom: var(--space-2xl);
+    }
+
+    .admin-header h1 {
+      font-size: var(--font-size-3xl);
+      letter-spacing: -0.02em;
+      color: var(--color-text-primary);
+    }
+
+    .admin-back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-xs);
+      font-size: var(--font-size-sm);
+      font-weight: 500;
+      color: var(--color-orange);
+      min-height: 44px;
+      padding: var(--space-sm) var(--space-md);
+      border-radius: var(--border-radius);
+      border: 1px solid var(--color-dark-border);
+      transition: all 0.2s ease;
+    }
+
+    .admin-back-link:hover {
+      background: var(--color-orange-light);
+      border-color: var(--color-orange);
+      text-decoration: none;
+    }
+
+    .admin-back-link::before {
+      content: '←';
+      font-size: 1.1em;
+    }
+
+    /* Widget Grid */
+    .admin-widgets {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: var(--space-xl);
+    }
+
+    .admin-widget {
+      background: var(--color-dark-card);
+      border: 1px solid var(--color-dark-border);
+      border-radius: var(--border-radius-lg);
+      padding: var(--space-xl);
+      transition: border-color 0.3s ease;
+    }
+
+    .admin-widget:hover {
+      border-color: var(--color-orange);
+    }
+
+    .admin-widget h2 {
+      font-size: var(--font-size-xl);
+      color: var(--color-text-primary);
+      margin-bottom: var(--space-lg);
+      padding-bottom: var(--space-sm);
+      border-bottom: 1px solid var(--color-dark-border);
+    }
+
+    .widget-content {
+      color: var(--color-text-secondary);
+      font-size: var(--font-size-base);
+    }
+
+    .widget-loading {
+      color: var(--color-text-muted);
+      font-style: italic;
+    }
+
+    /* Responsive: Tablet (768px+) */
+    @media (min-width: 768px) {
+      .admin-widgets {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .admin-widget-full {
+        grid-column: 1 / -1;
+      }
+    }
+
+    /* Responsive: Desktop (1024px+) */
+    @media (min-width: 1024px) {
+      .admin-widgets {
+        grid-template-columns: repeat(3, 1fr);
+      }
+
+      .admin-widget-full {
+        grid-column: 1 / -1;
+      }
+    }
+
+    /* Small mobile (320px - 479px) */
+    @media (max-width: 479px) {
+      .admin-header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .admin-header h1 {
+        font-size: var(--font-size-2xl);
+      }
+
+      .admin-widget {
+        padding: var(--space-lg);
+      }
+    }
+
+    /* Light theme overrides for admin widgets */
+    body.light-theme .admin-widget {
+      background: #FFFFFF;
+      border-color: #E5E7EB;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+    }
+
+    body.light-theme .admin-widget:hover {
+      border-color: var(--color-orange);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+    }
+
+    body.light-theme .admin-widget h2 {
+      border-bottom-color: #E5E7EB;
+    }
+
+    body.light-theme .admin-back-link {
+      border-color: #E5E7EB;
+    }
+
+    body.light-theme .admin-back-link:hover {
+      background: rgba(242, 101, 34, 0.05);
+      border-color: var(--color-orange);
+    }
+  </style>
+</head>
+<body>
+  <a href="#main-content" class="skip-link">Skip to content</a>
+
+  <header>
+    <div class="container">
+      <span class="logo">AI Tech Product Camp</span>
+      <div class="header-actions">
+        <div class="auth-controls" id="auth-controls"></div>
+        <button class="theme-toggle" id="theme-toggle" aria-label="Toggle light/dark theme" title="Toggle theme">
+          <span class="theme-toggle-icon" aria-hidden="true"></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main id="main-content">
+    <section class="container" style="padding-block: var(--space-2xl) var(--space-section);">
+      <div class="admin-header">
+        <h1>Admin Dashboard</h1>
+        <a href="index.html" class="admin-back-link" aria-label="Back to Main Site">Back to Main Site</a>
+      </div>
+
+      <div class="admin-widgets">
+        <section id="users-widget" class="admin-widget" role="region" aria-labelledby="users-widget-heading">
+          <h2 id="users-widget-heading">Registered Users</h2>
+          <div class="widget-content">
+            <p class="widget-loading">Loading...</p>
+          </div>
+        </section>
+
+        <section id="schedule-widget" class="admin-widget" role="region" aria-labelledby="schedule-widget-heading">
+          <h2 id="schedule-widget-heading">Camp Schedule</h2>
+          <div class="widget-content">
+            <p class="widget-loading">Loading...</p>
+          </div>
+        </section>
+
+        <section id="stats-widget" class="admin-widget" role="region" aria-labelledby="stats-widget-heading">
+          <h2 id="stats-widget-heading">Site Statistics</h2>
+          <div class="widget-content">
+            <p class="widget-loading">Loading...</p>
+          </div>
+        </section>
+
+        <section id="registrations-management-widget" class="admin-widget admin-widget-full" role="region" aria-labelledby="registrations-management-heading">
+          <h2 id="registrations-management-heading">Manage Registrations</h2>
+          <div class="widget-content">
+            <p class="widget-loading">Loading user registrations...</p>
+          </div>
+        </section>
+
+        <section id="announcements-management-widget" class="admin-widget admin-widget-full" role="region" aria-labelledby="announcements-management-heading">
+          <h2 id="announcements-management-heading">Announcements</h2>
+          <div class="widget-content">
+            <p class="widget-loading">Loading announcements...</p>
+          </div>
+        </section>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <p>&copy; 2025 [Organization Name]</p>
+      <p>Contact: <a href="mailto:[email]">[email]</a></p>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/amazon-cognito-identity-js/dist/amazon-cognito-identity.min.js"></script>
+  <script src="https://sdk.amazonaws.com/js/aws-sdk-2.1472.0.min.js"></script>
+  <script src="auth.js"></script>
+  <script src="role-manager.js"></script>
+  <script src="admin.js"></script>
+  <script>
+    // Theme Toggle Logic (shared with main site)
+    (function () {
+      var toggle = document.getElementById('theme-toggle');
+      var STORAGE_KEY = 'theme-preference';
+
+      function getPreference() {
+        var stored = localStorage.getItem(STORAGE_KEY);
+        if (stored) return stored;
+        return window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+      }
+
+      function applyTheme(theme) {
+        if (theme === 'light') {
+          document.body.classList.add('light-theme');
+        } else {
+          document.body.classList.remove('light-theme');
+        }
+      }
+
+      var currentTheme = getPreference();
+      applyTheme(currentTheme);
+
+      if (toggle) {
+        toggle.addEventListener('click', function () {
+          currentTheme = currentTheme === 'dark' ? 'light' : 'dark';
+          applyTheme(currentTheme);
+          localStorage.setItem(STORAGE_KEY, currentTheme);
+        });
+      }
+    })();
+
+    // Admin Dashboard Initialization
+    document.addEventListener('DOMContentLoaded', function () {
+      Auth.init().then(function () {
+        if (typeof AdminDashboard !== 'undefined') {
+          AdminDashboard.init();
+        }
+      });
+    });
+  </script>
+</body>
+</html>
