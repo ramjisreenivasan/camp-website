@@ -152,7 +152,7 @@ var Auth = (function () {
   /**
    * Create a new user in Cognito with email and name attributes.
    */
-  function register(email, password, name) {
+  function register(email, password, name, phoneNumber) {
     if (_disabled) {
       return Promise.reject(new Error('Auth is disabled due to configuration error'));
     }
@@ -160,7 +160,8 @@ var Auth = (function () {
     return new Promise(function (resolve, reject) {
       var attributeList = [
         new AmazonCognitoIdentity.CognitoUserAttribute({ Name: 'email', Value: email }),
-        new AmazonCognitoIdentity.CognitoUserAttribute({ Name: 'name', Value: name })
+        new AmazonCognitoIdentity.CognitoUserAttribute({ Name: 'name', Value: name }),
+        new AmazonCognitoIdentity.CognitoUserAttribute({ Name: 'phone_number', Value: phoneNumber })
       ];
 
       _userPool.signUp(email, password, attributeList, null, function (err, result) {

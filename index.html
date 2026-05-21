@@ -17,9 +17,6 @@
           <button class="btn btn-secondary auth-signin-btn" id="header-signin-btn">Sign In</button>
           <button class="btn btn-primary auth-register-btn" id="header-register-btn">Register</button>
         </div>
-        <button class="theme-toggle" id="theme-toggle" aria-label="Toggle light/dark theme" title="Toggle theme">
-          <span class="theme-toggle-icon" aria-hidden="true"></span>
-        </button>
       </div>
     </div>
   </header>
@@ -211,11 +208,33 @@
       </div>
     </section>
 
-    <!-- Instructors Placeholder -->
+    <!-- Speakers Section -->
     <section id="instructors">
       <div class="container">
-        <h2>Meet Your Instructors</h2>
-        <p>Coming soon</p>
+        <h2>Meet Your Speakers</h2>
+        <p class="speakers-intro">Bringing together leaders across Product, Cloud, AI, Architecture, Enterprise Transformation, startup investing, and mentorship — this speaker lineup is focused on preparing people and organizations for the future of technology.</p>
+
+        <div class="speakers-list">
+          <div class="speaker-block">
+            <h3>Priyanka Puthran</h3>
+            <p class="speaker-focus">Technology Strategy | AI, APIs, Data & Integrations</p>
+            <p>Priyanka has led Technology Strategy across AI, APIs, Data & Integrations, working with 5 Fortune 500 companies to help shape how enterprise systems, workforce platforms, and intelligent automation connect at scale. Beyond enterprise leadership, she is passionate about mentoring aspiring TPM professionals by teaching deep product, systems, integration, and execution thinking — while emphasizing emotional intelligence, communication, and human-centered leadership in modern tech careers. She also actively supports emerging professionals and founders through mentorship, startup advisory, and ecosystem-building initiatives.</p>
+          </div>
+
+          <div class="speaker-block">
+            <h3>Ramji Sundara Sreenivasan</h3>
+            <p class="speaker-focus">Cloud Architecture | Serverless, AI/ML & Modernization</p>
+            <p>Ramji is a seasoned cloud technology professional and solutions architect with deep expertise in scalable enterprise platforms, serverless architectures, AI/ML integration, and modernization strategy. Known for bridging business needs with innovative technical execution, Ramji brings strong experience mentoring teams, enabling enterprise innovation, and guiding organizations through complex global transformation initiatives.</p>
+          </div>
+
+          <div class="speaker-block">
+            <h3>Prakash Karunakara</h3>
+            <p class="speaker-focus">Digital Transformation | Cloud, AI, DevOps & Startup Investing</p>
+            <p>Prakash is a global digital transformation executive with extensive experience leading enterprise modernization programs across cloud, AI, DevOps, microservices, distributed systems, and large-scale delivery operations. With a strong blend of strategic leadership, organizational transformation, and business execution, Prakash has helped Fortune 500 organizations build agile, scalable, innovation-driven ecosystems. Outside the enterprise world, he is also an active startup investor and mentor supporting ventures across fintech, education, sustainability, and emerging technology spaces.</p>
+          </div>
+        </div>
+
+        <p class="speakers-closing">Together, they represent a powerful convergence of enterprise technology leadership, product strategy, AI innovation, cloud transformation, startup investing, and people-first mentorship — focused on building the next generation of resilient, adaptive, and future-ready technology professionals.</p>
       </div>
     </section>
 
@@ -232,8 +251,38 @@
     <div class="container">
       <p>&copy; 2025 [Organization Name]</p>
       <p>Contact: <a href="mailto:[email]">[email]</a></p>
+      <p><a href="#terms-conditions" id="terms-link">Terms &amp; Conditions</a></p>
     </div>
   </footer>
+
+  <!-- Terms & Conditions Modal Content (hidden, shown on click) -->
+  <div id="terms-conditions" class="terms-section" style="display:none;">
+    <h2>Terms &amp; Conditions</h2>
+
+    <h3>1. Refund Policy</h3>
+    <p>A full refund is available if requested within 48 hours of the camp start date. Refund requests must be submitted via email. Refunds will be processed within 5–7 business days. No refunds will be issued after the 48-hour window.</p>
+
+    <h3>2. Schedule &amp; Content</h3>
+    <p>The schedule, topics, deliverables, and speakers are subject to change at the discretion of the Organizing Parties. Participants will be notified of any material changes via WhatsApp or email.</p>
+
+    <h3>3. No Outcome Guarantee</h3>
+    <p>This program is educational in nature. Participation does not guarantee employment, career advancement, or any specific professional outcome. Any career-related language on this site is aspirational and not a promise of results.</p>
+
+    <h3>4. Recording &amp; Media Consent</h3>
+    <p>Sessions may be recorded for educational and archival purposes. By participating, you consent to being recorded. Recordings may be shared with other participants or used in future promotional materials unless you opt out in writing prior to the camp start date.</p>
+
+    <h3>5. Third-Party Tools &amp; Accounts</h3>
+    <p>Participants may be required to create accounts on third-party platforms (e.g., cloud providers, AI services). Any costs incurred from the use of third-party services beyond what is provided by the camp are the sole responsibility of the participant.</p>
+
+    <h3>6. Age Requirement</h3>
+    <p>Participants must be at least 18 years of age. Individuals under 18 may participate only with written parental or guardian consent submitted prior to the camp start date.</p>
+
+    <h3>7. Limitation of Liability</h3>
+    <p>This technology camp program is a collaborative initiative jointly organized by Softmax Technologies and its partnering organizations, sponsors, and stakeholders (collectively, "Organizing Parties"). No single Organizing Party shall be held solely liable for any claims, damages, losses, injuries, or disputes arising from or in connection with participation in the Program.</p>
+
+    <h3>8. Communication</h3>
+    <p>WhatsApp is the preferred communication channel. By registering, you agree to receive camp-related communications via WhatsApp on the phone number provided during registration.</p>
+  </div>
 
   <script src="https://cdn.jsdelivr.net/npm/amazon-cognito-identity-js/dist/amazon-cognito-identity.min.js"></script>
   <script src="auth.js"></script>

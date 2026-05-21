@@ -279,12 +279,28 @@ var AuthUI = (function () {
           '<span class="field-error" id="register-email-error" aria-live="polite"></span>' +
         '</div>' +
         '<div class="form-group">' +
+          '<label for="register-phone">Phone Number</label>' +
+          '<input type="tel" id="register-phone" name="phone" autocomplete="tel" placeholder="+1234567890" required />' +
+          '<span class="field-error" id="register-phone-error" aria-live="polite"></span>' +
+          '<p class="field-hint">WhatsApp is our preferred communication channel. Participants will be contacted via WhatsApp on this number.</p>' +
+        '</div>' +
+        '<div class="form-group">' +
           '<label for="register-password">Password</label>' +
           '<input type="password" id="register-password" name="password" autocomplete="new-password" required />' +
           '<span class="field-error" id="register-password-error" aria-live="polite"></span>' +
           '<p class="password-policy">Password must be at least 8 characters and include uppercase, lowercase, number, and special character.</p>' +
         '</div>' +
+        '<div class="form-group form-group-checkbox">' +
+          '<label for="register-terms">' +
+            '<input type="checkbox" id="register-terms" name="terms" required />' +
+            ' I agree to the <a href="#terms-conditions" class="terms-modal-link">Terms &amp; Conditions</a>' +
+          '</label>' +
+          '<span class="field-error" id="register-terms-error" aria-live="polite"></span>' +
+        '</div>' +
         '<button type="submit" class="btn btn-primary">Register</button>' +
+        '<p class="auth-disclaimer">' +
+          'This technology camp program is a collaborative initiative jointly organized and conducted by Softmax Technologies and its partnering organizations, sponsors, and stakeholders (collectively, "Organizing Parties"). Softmax Technologies acts solely as a coordinating partner and does not bear exclusive or individual liability for the Program. All Organizing Parties share collective responsibility for the planning, coordination, delivery, and outcomes of the Program. No single Organizing Party shall be held solely liable for any claims, damages, losses, injuries, or disputes arising from or in connection with participation in the Program.' +
+        '</p>' +
       '</form>';
 
     _openModal('Create Account', formHTML);
@@ -293,6 +309,7 @@ var AuthUI = (function () {
     var form = document.querySelector('#register-form');
     var nameInput = document.querySelector('#register-name');
     var emailInput = document.querySelector('#register-email');
+    var phoneInput = document.querySelector('#register-phone');
     var passwordInput = document.querySelector('#register-password');
     var errorDiv = form.querySelector('.auth-error');
 
@@ -307,6 +324,7 @@ var AuthUI = (function () {
 
     clearFieldError(nameInput, 'register-name-error');
     clearFieldError(emailInput, 'register-email-error');
+    clearFieldError(phoneInput, 'register-phone-error');
     clearFieldError(passwordInput, 'register-password-error');
 
     // Form submission handler
@@ -317,13 +335,16 @@ var AuthUI = (function () {
       errorDiv.textContent = '';
       var nameError = document.querySelector('#register-name-error');
       var emailError = document.querySelector('#register-email-error');
+      var phoneError = document.querySelector('#register-phone-error');
       var passwordError = document.querySelector('#register-password-error');
       if (nameError) nameError.textContent = '';
       if (emailError) emailError.textContent = '';
+      if (phoneError) phoneError.textContent = '';
       if (passwordError) passwordError.textContent = '';
 
       var nameVal = nameInput.value;
       var emailVal = emailInput.value;
+      var phoneVal = phoneInput.value;
       var passwordVal = passwordInput.value;
 
       // Validate all fields
@@ -359,6 +380,26 @@ var AuthUI = (function () {
         }
       }
 
+      var phoneRequiredValidation = Validators.validateRequired(phoneVal, 'Phone Number');
+      if (!phoneRequiredValidation.valid) {
+        if (phoneError) phoneError.textContent = phoneRequiredValidation.error;
+        hasErrors = true;
+      } else {
+        var phoneRegex = /^\+[1-9]\d{6,14}$/;
+        if (!phoneRegex.test(phoneVal)) {
+          if (phoneError) phoneError.textContent = 'Must be in international format (e.g., +1234567890)';
+          hasErrors = true;
+        }
+      }
+
+      // Validate terms checkbox
+      var termsCheckbox = document.querySelector('#register-terms');
+      var termsError = document.querySelector('#register-terms-error');
+      if (termsCheckbox && !termsCheckbox.checked) {
+        if (termsError) termsError.textContent = 'You must agree to the Terms & Conditions to register.';
+        hasErrors = true;
+      }
+
       if (hasErrors) return;
 
       // Disable submit button during request
@@ -366,7 +407,7 @@ var AuthUI = (function () {
       submitBtn.disabled = true;
       submitBtn.textContent = 'Registering...';
 
-      Auth.register(emailVal, passwordVal, nameVal)
+      Auth.register(emailVal, passwordVal, nameVal, phoneVal)
         .then(function () {
           // Show success message
           errorDiv.textContent = '';

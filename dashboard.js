@@ -27,8 +27,8 @@ var Dashboard = (function () {
 
   // Static camp schedule data
   var CAMP_DATA = {
-    startDate: '2025-07-27',
-    endDate: '2025-07-31',
+    startDate: '2026-07-27',
+    endDate: '2026-07-31',
     days: [
       { day: 1, title: 'AI & Cloud Foundations', deliverable: 'Working AI development environment on the cloud' },
       { day: 2, title: 'Building AI Products', deliverable: 'AI product prototype' },

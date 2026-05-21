@@ -169,7 +169,7 @@ var AdminDashboard = (function () {
         });
 
         var params = {
-          UserPoolId: 'us-east-1_MzDpbodLh',
+          UserPoolId: 'us-east-1_SwlJv7Aku',
           Limit: 60
         };
 
@@ -199,7 +199,7 @@ var AdminDashboard = (function () {
 
       try {
         var idToken = session.getIdToken().getJwtToken();
-        var loginKey = 'cognito-idp.us-east-1.amazonaws.com/us-east-1_MzDpbodLh';
+        var loginKey = 'cognito-idp.us-east-1.amazonaws.com/us-east-1_SwlJv7Aku';
         var logins = {};
         logins[loginKey] = idToken;
 
@@ -432,7 +432,7 @@ var AdminDashboard = (function () {
         });
 
         var params = {
-          UserPoolId: 'us-east-1_MzDpbodLh',
+          UserPoolId: 'us-east-1_SwlJv7Aku',
           Username: username,
           UserAttributes: userAttributes
         };

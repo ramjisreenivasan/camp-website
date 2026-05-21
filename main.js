@@ -17,10 +17,12 @@ document.body.classList.add('js-enabled');
   }
 
   function applyTheme(theme) {
-    if (theme === 'light') {
-      document.body.classList.add('light-theme');
-    } else {
+    if (theme === 'dark') {
+      document.body.classList.add('dark-theme');
       document.body.classList.remove('light-theme');
+    } else {
+      document.body.classList.remove('dark-theme');
+      document.body.classList.add('light-theme');
     }
   }
 
@@ -89,3 +91,69 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   });
 });
+
+// Terms & Conditions Modal
+(function () {
+  function showTermsModal() {
+    var termsContent = document.getElementById('terms-conditions');
+    if (!termsContent) return;
+
+    // Clone the content for the modal
+    var content = termsContent.innerHTML;
+
+    // Create overlay
+    var overlay = document.createElement('div');
+    overlay.className = 'terms-modal-overlay';
+    overlay.setAttribute('role', 'dialog');
+    overlay.setAttribute('aria-modal', 'true');
+    overlay.setAttribute('aria-labelledby', 'terms-modal-title');
+
+    var modal = document.createElement('div');
+    modal.className = 'terms-modal';
+
+    var closeBtn = document.createElement('button');
+    closeBtn.className = 'terms-modal-close';
+    closeBtn.setAttribute('aria-label', 'Close Terms & Conditions');
+    closeBtn.innerHTML = '&times;';
+    closeBtn.addEventListener('click', function () {
+      closeTermsModal(overlay);
+    });
+
+    var contentDiv = document.createElement('div');
+    contentDiv.className = 'terms-modal-content';
+    contentDiv.innerHTML = content;
+
+    modal.appendChild(closeBtn);
+    modal.appendChild(contentDiv);
+    overlay.appendChild(modal);
+
+    overlay.addEventListener('click', function (e) {
+      if (e.target === overlay) closeTermsModal(overlay);
+    });
+
+    document.addEventListener('keydown', function handler(e) {
+      if (e.key === 'Escape') {
+        closeTermsModal(overlay);
+        document.removeEventListener('keydown', handler);
+      }
+    });
+
+    document.body.appendChild(overlay);
+    closeBtn.focus();
+  }
+
+  function closeTermsModal(overlay) {
+    if (overlay && overlay.parentNode) {
+      overlay.parentNode.removeChild(overlay);
+    }
+  }
+
+  // Attach click handlers to terms links (footer and registration form)
+  document.addEventListener('click', function (e) {
+    var link = e.target.closest('a[href="#terms-conditions"], .terms-modal-link');
+    if (link) {
+      e.preventDefault();
+      showTermsModal();
+    }
+  });
+})();
