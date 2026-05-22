@@ -5,40 +5,6 @@
 // CSS uses .js-enabled to hide FAQ answers (they remain visible without JS)
 document.body.classList.add('js-enabled');
 
-// Theme Toggle Logic
-(function () {
-  const toggle = document.getElementById('theme-toggle');
-  const STORAGE_KEY = 'theme-preference';
-
-  function getPreference() {
-    const stored = localStorage.getItem(STORAGE_KEY);
-    if (stored) return stored;
-    return window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
-  }
-
-  function applyTheme(theme) {
-    if (theme === 'dark') {
-      document.body.classList.add('dark-theme');
-      document.body.classList.remove('light-theme');
-    } else {
-      document.body.classList.remove('dark-theme');
-      document.body.classList.add('light-theme');
-    }
-  }
-
-  // Apply saved preference on load
-  var currentTheme = getPreference();
-  applyTheme(currentTheme);
-
-  if (toggle) {
-    toggle.addEventListener('click', function () {
-      currentTheme = currentTheme === 'dark' ? 'light' : 'dark';
-      applyTheme(currentTheme);
-      localStorage.setItem(STORAGE_KEY, currentTheme);
-    });
-  }
-})();
-
 // FAQ Accordion Logic
 (function () {
   const faqItems = document.querySelectorAll('.faq-item');
