@@ -123,3 +123,39 @@ document.addEventListener('DOMContentLoaded', function () {
     }
   });
 })();
+
+// Webinar Announcement Banner & Modal
+(function () {
+  var learnMoreBtn = document.getElementById('announcement-learn-more');
+  var modal = document.getElementById('webinar-modal');
+  var closeBtn = document.getElementById('webinar-modal-close');
+
+  if (!learnMoreBtn || !modal || !closeBtn) return;
+
+  function openModal() {
+    modal.style.display = 'flex';
+    document.body.style.overflow = 'hidden';
+    closeBtn.focus();
+  }
+
+  function closeModal() {
+    modal.style.display = 'none';
+    document.body.style.overflow = '';
+    learnMoreBtn.focus();
+  }
+
+  learnMoreBtn.addEventListener('click', openModal);
+  closeBtn.addEventListener('click', closeModal);
+
+  // Close on overlay click
+  modal.addEventListener('click', function (e) {
+    if (e.target === modal) closeModal();
+  });
+
+  // Close on Escape key
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape' && modal.style.display === 'flex') {
+      closeModal();
+    }
+  });
+})();
